@@ -144,9 +144,8 @@ show_me_how_drunk <- function(age, sex, height, weight, drinking_time, drinks) {
 # because all the functions get_<BLA> have their own input checks we don't
 # have to do this again
 create_plot_data <- function(age, sex, height, weight, drinking_time, drinks) {
-  assert_posixct(drinking_time, sorted = TRUE, len = 2)
-  partylength <- difftime(drinking_time[2], drinking_time[1], units = "mins")
-  assert_true(unclass(partylength) >= 5)
+  assert_posixct(drinking_time, sorted = TRUE, len = 2, any.missing = FALSE,
+    null.ok = FALSE)
 
   time_points <- seq(from = drinking_time[1], to = drinking_time[2], by = 5 * 60)
   # note that in case the time-difference between the points is not divisible
@@ -159,6 +158,7 @@ create_plot_data <- function(age, sex, height, weight, drinking_time, drinks) {
   alcohol <- get_alcohol(drinks)
   permille_total <- get_permille(alcohol, bodywater, rep(drinking_time[1],2))
 
+  # note that for the first hour no alcohol is broken
   permille_points <- rep(permille_total, times = min(12, length(time_points)))
   if (length(time_points) >= 13) {
     permille_points <- c(permille_points,

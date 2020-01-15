@@ -1,0 +1,16 @@
+Package: promcal
+Title: Calculate blood alcohol concentration
+Version: 0.0.0.9000
+Date: 14-01-2020
+Authors@R: 
+    person(given = "Sebastian",
+           family = "Fischer",
+           role = c("aut", "cre"),
+           email = "sebf.fischer@gmail.com")
+Description: This package allows you to calculate your blood alcohol 
+    concentration depending on how much you drank of what over which timespan.
+Imports: checkmate, testthat, ggplot2
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
